@@ -1,0 +1,643 @@
+@use "variables";
+@use "function";
+@use "mixins";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: rgba(variables.$bg-dark, 0.95);
+  border-bottom: 1px solid variables.$border-color;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 function.spacing(2);
+  max-width: variables.$container;
+  margin: 0 auto;
+
+  &__logo {
+    font-family: variables.$font-main;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+
+    a {
+      color: variables.$text-white;
+      transition: color 0.3s;
+
+      &:hover {
+        color: variables.$accent-color;
+      }
+    }
+  }
+
+  &__links {
+    display: none;
+    position: fixed;
+    top: 56px;
+    right: 0;
+    width: 50%;
+    height: calc(100vh - 56px);
+    background: rgba(variables.$bg-dark, 0.98);
+    border-left: 1px solid variables.$border-color;
+    padding: function.spacing(4) function.spacing(3);
+    flex-direction: column;
+    gap: function.spacing(2.5);
+    z-index: 99;
+
+    &.open {
+      display: flex;
+    }
+
+    a {
+      font-family: variables.$font-main;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: variables.$text-gray;
+      transition: color 0.3s;
+      position: relative; 
+      width: fit-content; 
+
+      &:hover,
+      &.active {
+        color: variables.$text-white;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0px; 
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: variables.$accent-color;
+        transition: width 0.3s;
+      }
+
+      &.active::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 400px;
+  overflow: hidden;
+  margin-top: 56px;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 60% center;
+  }
+
+  &__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  &__fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 40%, #0f3460 100%);
+    z-index: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.3) 60%, rgba(10, 10, 10, 0.1) 100%);
+    z-index: 2;
+  }
+
+  &__content {
+    position: absolute;
+    bottom: function.spacing(5);
+    left: function.spacing(2);
+    right: function.spacing(2);
+    z-index: 3;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    line-height: 1.3;
+    margin-bottom: function.spacing(1.5);
+  }
+
+  &__desc {
+    font-size: 0.9rem;
+    color: variables.$text-gray;
+    margin-bottom: function.spacing(2.5);
+  }
+
+  &__btn {
+    display: inline-block;
+    padding: function.spacing(1.25) function.spacing(3);
+    border: 1px solid variables.$text-gray;
+    font-family: variables.$font-main;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: variables.$text-white;
+    transition: all 0.3s;
+
+    &:hover {
+      background: variables.$text-white;
+      color: variables.$bg-dark;
+    }
+  }
+}
+
+.cards-section {
+  padding: function.spacing(6) 0;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: function.spacing(3);
+  }
+
+  &__title {
+    font-size: 1.3rem;
+  }
+
+  &__nav {
+    display: flex;
+    gap: function.spacing(1);
+  }
+
+  &__btn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid variables.$border-color;
+    border-radius: 50%;
+    @include mixins.flex-center;
+    transition: all 0.3s;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: variables.$text-white;
+    }
+
+    &:hover {
+      background: variables.$text-white;
+      border-color: variables.$text-white;
+
+      svg {
+        stroke: variables.$bg-dark;
+      }
+    }
+  }
+}
+
+.card-track {
+  display: flex;
+  gap: function.spacing(2);
+  overflow: hidden;
+}
+
+/* =======================================================
+   แก้ไขแล้ว: สไตล์สำหรับหน้า Series (Card, Hover Overlay, Tag)
+======================================================== */
+.card {
+  position: relative; /* สำคัญเพื่อให้ overlay อ้างอิงตำแหน่งได้ */
+  background: variables.$bg-card;
+  border-radius: variables.$radius;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 0 0 calc(50% - 8px); /* ของเก่า */
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  /* เลเยอร์สีดำที่เด้งขึ้นมาตอน Hover (หน้ารีวิว) */
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 3 / 4; /* ให้คลุมทับรูปพอดี */
+    background: rgba(0, 0, 0, 0.85); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: function.spacing(2);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    pointer-events: none; /* กันบั๊กเวลาเอาเมาส์ชี้ */
+  }
+
+  &__review-short {
+    font-size: 0.85rem;
+    color: variables.$text-white;
+    line-height: 1.5;
+  }
+
+  /* เมื่อ Hover ที่ Card ให้เปิด Overlay */
+  &:hover &__overlay {
+    opacity: 1;
+  }
+
+  /* ระยะห่างของตัวหนังสือด้านล่าง ไม่ให้ชิดภาพเกินไป */
+  &__info {
+    padding: function.spacing(1.5);
+  }
+
+  &__name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: function.spacing(1);
+    color: variables.$text-white;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  &__meta {
+    display: flex;
+    gap: function.spacing(1);
+    flex-wrap: wrap;
+  }
+
+  /* กล่องที่ยังไม่เปิดเผย (Coming Soon) */
+  &--locked {
+    opacity: 0.7;
+    
+    .card__placeholder {
+      width: 100%;
+      height: 100%;
+      background: #1a1816;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: variables.$text-muted;
+      border: 2px dashed variables.$border-color;
+    }
+  }
+}
+
+/* สไตล์กล่อง Tag (เช่น ★ 8.5 หรือ Sci-Fi) */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  &--accent {
+    background: variables.$accent-color;
+    color: #141311;
+  }
+
+  &--outline {
+    border: 1px solid variables.$border-color;
+    color: variables.$text-gray;
+  }
+}
+/* ======================================================= */
+
+.highlight {
+  padding: function.spacing(4) 0;
+
+  &__banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    border-radius: variables.$radius;
+    padding: function.spacing(4) function.spacing(2.5);
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    margin-bottom: function.spacing(1.5);
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    color: variables.$text-gray;
+    line-height: 1.7;
+  }
+}
+
+.footer {
+  background: variables.$bg-secondary;
+  padding: function.spacing(6) 0 function.spacing(5);
+  position: relative;
+  z-index: 1;
+
+  &__top {
+    display: flex;
+    flex-direction: column; 
+    gap: function.spacing(4);
+    align-items: flex-start;
+  }
+
+  &__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: function.spacing(2) function.spacing(3); 
+
+    a {
+      font-family: variables.$font-body; 
+      font-size: 1.1rem;
+      font-weight: 700; 
+      color: variables.$text-gray; 
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: variables.$text-white; 
+      }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: function.spacing(2.5); 
+
+    a {
+      font-size: 1.2rem;
+      color: variables.$text-muted; 
+      transition: color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+
+      &:hover {
+        color: variables.$text-white; 
+        transform: translateY(-2px); 
+      }
+    }
+  }
+
+  &__bottom {
+    margin-top: function.spacing(5);
+    font-size: 0.85rem;
+    color: variables.$text-muted; 
+    line-height: 1.6;
+
+    a {
+      color: variables.$text-muted;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: variables.$text-white;
+      }
+    }
+  }
+}
+
+.page-header {
+ margin-top: 0; 
+  /* ปรับ padding บน-ล่าง และเพิ่ม margin-bottom เพื่อผลักรูปภาพลงไป */
+  padding: function.spacing(7) 0 function.spacing(3); 
+  margin-bottom: function.spacing(2); 
+  text-align: center;
+
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__sub {
+    color: variables.$text-gray;
+    font-size: 0.9rem;
+    margin-top: function.spacing(1.5); /* ดันคำโปรยให้ห่างจากหัวข้อหลักนิดนึง */
+  }
+}
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: function.spacing(2);
+  padding-bottom: function.spacing(6);
+}
+
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* แบ่ง 2 คอลัมน์เป็นค่าเริ่มต้น (สำหรับอันเล็ก) */
+  gap: function.spacing(2);
+  padding-bottom: function.spacing(6);
+
+  /* บังคับให้ "การ์ดใบแรก" ขยายเต็มความกว้าง (กินพื้นที่ 2 คอลัมน์) */
+  .card:first-child {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 768px) {
+
+  .header {
+    height: 64px;
+  }
+
+  .nav {
+    padding: 0 function.spacing(5);
+
+    &__logo {
+      font-size: 1.8rem;
+    }
+
+    &__hamburger {
+      display: none;
+    }
+
+   &__links {
+      display: flex;
+      position: static;
+      width: auto;
+      height: 100%; 
+      border-left: none;
+      padding: 0;
+      background: none;
+      flex-direction: row;
+      gap: function.spacing(4);
+
+      a {
+        font-size: 0.85rem;
+        height: 100%; 
+        display: flex; 
+        align-items: center; 
+      }
+    }
+  }
+
+  .hero {
+    height: 90vh;
+    margin-top: 64px;
+
+    img {
+      object-position: center center;
+    }
+
+    &__content {
+      bottom: function.spacing(10);
+      left: function.spacing(7.5);
+      right: auto;
+      max-width: 550px;
+    }
+
+    &__title {
+      font-size: 2.8rem;
+    }
+
+    &__desc {
+      font-size: 1rem;
+    }
+  }
+
+  .cards-section {
+    padding: function.spacing(9) 0;
+
+    &__title {
+      font-size: 1.8rem;
+    }
+
+    &__btn {
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  .card-track {
+    gap: function.spacing(2.5);
+  }
+
+  .card {
+    flex: 0 0 calc(25% - 15px);
+  }
+
+  .highlight {
+    padding: function.spacing(6) 0;
+
+    &__banner {
+      padding: function.spacing(6) function.spacing(7);
+      display: flex;
+      align-items: center;
+      gap: function.spacing(5);
+    }
+
+    &__title {
+      font-size: 1.6rem;
+      margin-bottom: 0;
+      white-space: nowrap;
+    }
+  }
+
+  .footer {
+    &__top {
+      flex-direction: row; 
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__nav {
+      gap: function.spacing(3);
+    }
+  }
+
+  .page-header {
+    margin-top: 0; 
+    padding: function.spacing(10) 0 function.spacing(4); 
+    margin-bottom: function.spacing(3);
+
+    &__title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .series-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: function.spacing(2.5);
+    padding-bottom: function.spacing(9);
+  }
+
+  .grid-5 {
+    grid-template-columns: repeat(5, 1fr); /* จอคอมให้เรียง 5 คอลัมน์เท่ากันหมด */
+    gap: function.spacing(2);
+    padding-bottom: function.spacing(8);
+
+    /* จอคอม บังคับให้การ์ดใบแรกกลับมามีขนาดเท่าเพื่อน (1 คอลัมน์) */
+    .card:first-child {
+      grid-column: auto;
+    }
+  }
+
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: function.spacing(2);
+
+    &__overlay {
+      opacity: 0;
+      transform: translateY(8px);
+      padding: function.spacing(2);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+    }
+
+    &__name {
+      font-size: 1rem;
+    }
+
+    &__item--large .gallery__name {
+      font-size: 1.3rem;
+    }
+
+    &__spec {
+      font-size: 0.8rem;
+    }
+
+    &__desc {
+      display: block;
+      font-size: 0.8rem;
+      color: variables.$text-gray;
+      line-height: 1.6;
+      margin-top: function.spacing(1);
+    }
+  }
+
+  .container {
+    padding: 0 function.spacing(5);
+  }
+
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews | CineReview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+ <header class="header">
+  <nav class="nav">
+    <div class="nav__logo"><a href="index.html">CineReview</a></div>
+    <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav__links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="review.html" class="active">Reviews</a>
+      <a href="list.html">Lists</a>
+    </div>
+  </nav>
+</header>
+
+  <div class="page-header">
+    <h1 class="page-header__title">Review Archive</h1>
+    <p class="page-header__sub">A full archive of film and series reviews, sorted by completion date.</p>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="series-grid">
+
+        <div class="card">
+          <div class="card__image"><img src="pos/1.jpg" alt="Dune"></div>
+          <div class="card__overlay">
+           <p class="card__review-short">"Chow Yun-Fat at his absolute peak. A quintessential Hong Kong classic that perfectly balances goofy comedy with slick, high-stakes casino action."</p>
+          </div>
+          <div class="card__info">
+            <p class="card__name">God of Gamblers (1989)</p>
+            <div class="card__meta">
+              <span class="tag tag--accent">IMDB: 7.2</span>
+              <span class="tag tag--outline">Action / Comedy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__image"><img src="pos/2.jpg" alt="Oppenheimer"></div>
+          <div class="card__overlay">
+            <p class="card__review-short">"A surprisingly moving Christmas tale. Nicolas Cage delivers a wonderfully restrained performance that leaves you questioning your own life choices."</p>
+          </div>
+          <div class="card__info">
+            <p class="card__name">The Family Man (2000)</p>
+            <div class="card__meta">
+              <span class="tag tag--accent">IMDB: 6.8</span>
+              <span class="tag tag--outline">Drama / Fantasy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__image"><img src="pos/3.jpg" alt="Past Lives"></div>
+          <div class="card__overlay">
+           <p class="card__review-short">"Absolutely unhinged, wildly offensive, and unapologetically hilarious. Turn your brain off and just enjoy the chaotic ride with Sacha Baron Cohen."</p>
+          </div>
+          <div class="card__info">
+            <p class="card__name">The Brothers Grimsby (2016)</p>
+            <div class="card__meta">
+              <span class="tag tag--accent">IMDB: 6.2</span>
+              <span class="tag tag--outline">Action / Comedy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__image"><img src="pos/4.jpg" alt="Godzilla"></div>
+          <div class="card__overlay">
+            <p class="card__review-short">"Tricks you into thinking it's just another goofy Sandler comedy before hitting you with a devastating emotional truck in the third act. Bring tissues."</p>
+          </div>
+          <div class="card__info">
+            <p class="card__name">Click (2006)</p>
+            <div class="card__meta">
+              <span class="tag tag--accent">IMDB: 6.4</span>
+              <span class="tag tag--outline">Comedy / Drama</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__image"><img src="pos/300_Poster.jpg" alt="Spider-Man"></div>
+          <div class="card__overlay">
+           <p class="card__review-short">"THIS IS SPARTA! A visual masterpiece of pure testosterone, stylized gore, and breathtaking cinematography. Pure cinematic adrenaline."</p>
+          </div>
+          <div class="card__info">
+            <p class="card__name">300 (2006)</p>
+            <div class="card__meta">
+              <span class="tag tag--accent">IMDB: 7.6</span>
+              <span class="tag tag--outline">Action / War</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__image"><img src="pos/6.jpg" alt="EEAAO"></div>
+          <div class="card__overlay">
+            <p class="card__review-short">"The ultimate Christmas action movie. Bruce Willis defined the modern everyman hero here. Flawless pacing, an iconic villain, and pure perfection."</p>
+          </div>
+          <div class="card__info">
+            <p class="card__name">Die Hard (1988)</p>
+            <div class="card__meta">
+              <span class="tag tag--accent">IMDB: 8.2</span>
+              <span class="tag tag--outline">Action / Thriller</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card--locked">
+          <div class="card__image">
+            <div class="card__placeholder">
+              <span>?</span>
+            </div>
+          </div>
+          <div class="card__info">
+            <p class="card__name">Coming Soon</p>
+            <div class="card__meta">
+              <span class="tag tag--outline">Pending Review</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div style="height: 48px;"></div>
+
+  <footer class="footer">
+    <div class="container">
+      
+      <div class="footer__top">
+        <nav class="footer__nav">
+          <a href="#">About</a>
+          <a href="#">Journal</a>
+          <a href="#">Film Index</a>
+          <a href="#">Ratings</a>
+          <a href="#">Help</a>
+          <a href="#">Terms</a>
+          <a href="#">API</a>
+          <a href="#">Contact</a>
+        </nav>
+        
+        <div class="footer__socials">
+          <a href="#" title="Threads">@</a>
+          <a href="#" title="Twitter">𝕏</a>
+          <a href="#" title="Facebook">f</a>
+          <a href="#" title="YouTube">▶</a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 FILMVAULT Limited. Made by fans in Thailand. Film data from TMDB. Mobile site.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

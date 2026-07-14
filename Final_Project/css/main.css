@@ -1,0 +1,882 @@
+@charset "UTF-8";
+/* สีพื้นหลังหลัก เทาอมน้ำเงินเข้มจัดๆ */
+/* สีพื้นหลังการ์ด สว่างขึ้นมานิดนึง */
+/* สี Navbar และ Footer */
+/* สีขาวแบบหม่นๆ ไม่ออกขาวสว่างจ้า เพื่อความคลาสสิก */
+/* สีเทาสำหรับข้อความรอง */
+/* สีเทาเข้มสำหรับข้อความที่หลบสายตา */
+/* สีเขียวตุ่นๆ สไตล์ Letterboxd แบบวินเทจ */
+/* สีเส้นขอบกลืนๆ ไปกับพื้นหลัง */
+/* เปลี่ยนฟอนต์ให้ดูคลาสสิก / เป็นเว็บบล็อคมากขึ้น */
+/* ฟอนต์หัวข้อแบบ Serif ดูเป็นงานเขียนคลาสสิก */
+/* ฟอนต์เนื้อหาที่อ่านง่ายและดูเข้ากับยุคก่อน */
+/* ลดความโค้งมนลงให้ขอบดูเหลี่ยมขึ้น เข้ากับสไตล์บล็อคเก่า */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Fira Sans", sans-serif;
+  color: #d8dbdf;
+  background-color: #111315;
+  line-height: 1.6;
+}
+
+a {
+  color: #d8dbdf;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #d8dbdf;
+  font-family: "Fira Sans", sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "Lora", serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.card {
+  flex: 0 0 calc(50% - 8px);
+  background: #1c1f24;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+.card__image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.card:hover .card__image img {
+  transform: scale(1.05);
+}
+.card__info {
+  padding: 12px;
+}
+.card__name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card__meta {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.tag--accent {
+  background: #55a872;
+  color: #000000; /* ตัวหนังสือสีดำบนพื้นทอง */
+}
+.tag--outline {
+  border: 1px solid #2a2e35;
+  color: #8c929b;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.gallery__item {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.gallery__item:hover .gallery__img img {
+  transform: scale(1.05);
+}
+.gallery__item:hover .gallery__overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.gallery__item--large {
+  grid-column: span 2;
+}
+.gallery__img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+.gallery__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.gallery__item--large .gallery__img {
+  aspect-ratio: 2/1;
+}
+.gallery__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.gallery__name {
+  font-family: "Lora", serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.gallery__item--large .gallery__name {
+  font-size: 1rem;
+}
+.gallery__spec {
+  font-size: 0.7rem;
+  color: #8c929b;
+  margin-top: 4px;
+}
+.gallery__desc {
+  display: none;
+}
+
+.nav__hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 101;
+}
+.nav__hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #d8dbdf;
+  transition: all 0.3s;
+}
+.nav__hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav__hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav__hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.series-grid .card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
+}
+.series-grid .card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.series-grid .card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.series-grid .card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.series-grid .card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.series-grid .card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.series-grid .card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.series-grid .card:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.series-grid .card:nth-child(8) {
+  animation-delay: 0.8s;
+}
+
+.placeholder-1 {
+  background: linear-gradient(135deg, #1a1a2e, #0f3460);
+}
+
+.placeholder-2 {
+  background: linear-gradient(135deg, #1a0a0a, #4a1010);
+}
+
+.placeholder-3 {
+  background: linear-gradient(135deg, #0a1a0a, #1a3a1a);
+}
+
+.placeholder-4 {
+  background: linear-gradient(135deg, #1a1a0a, #4a4010);
+}
+
+.placeholder-5 {
+  background: linear-gradient(135deg, #0a0a1a, #10104a);
+}
+
+.placeholder-6 {
+  background: linear-gradient(135deg, #1a0a1a, #4a104a);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background: rgba(17, 19, 21, 0.95);
+  border-bottom: 1px solid #2a2e35;
+  z-index: 100;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.nav__logo {
+  font-family: "Lora", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.nav__logo a {
+  color: #d8dbdf;
+  transition: color 0.3s;
+}
+.nav__logo a:hover {
+  color: #55a872;
+}
+.nav__links {
+  display: none;
+  position: fixed;
+  top: 56px;
+  right: 0;
+  width: 50%;
+  height: calc(100vh - 56px);
+  background: rgba(17, 19, 21, 0.98);
+  border-left: 1px solid #2a2e35;
+  padding: 32px 24px;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 99;
+}
+.nav__links.open {
+  display: flex;
+}
+.nav__links a {
+  font-family: "Lora", serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8c929b;
+  transition: color 0.3s;
+  position: relative;
+  width: fit-content;
+}
+.nav__links a:hover, .nav__links a.active {
+  color: #d8dbdf;
+}
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #55a872;
+  transition: width 0.3s;
+}
+.nav__links a.active::after {
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 400px;
+  overflow: hidden;
+  margin-top: 56px;
+}
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% center;
+}
+.hero__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.hero__fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 40%, #0f3460 100%);
+  z-index: 0;
+}
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.3) 60%, rgba(10, 10, 10, 0.1) 100%);
+  z-index: 2;
+}
+.hero__content {
+  position: absolute;
+  bottom: 40px;
+  left: 16px;
+  right: 16px;
+  z-index: 3;
+}
+.hero__title {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.hero__desc {
+  font-size: 0.9rem;
+  color: #8c929b;
+  margin-bottom: 20px;
+}
+.hero__btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 1px solid #8c929b;
+  font-family: "Lora", serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #d8dbdf;
+  transition: all 0.3s;
+}
+.hero__btn:hover {
+  background: #d8dbdf;
+  color: #111315;
+}
+
+.cards-section {
+  padding: 48px 0;
+}
+.cards-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.cards-section__title {
+  font-size: 1.3rem;
+}
+.cards-section__nav {
+  display: flex;
+  gap: 8px;
+}
+.cards-section__btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #2a2e35;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+.cards-section__btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: #d8dbdf;
+}
+.cards-section__btn:hover {
+  background: #d8dbdf;
+  border-color: #d8dbdf;
+}
+.cards-section__btn:hover svg {
+  stroke: #111315;
+}
+
+.card-track {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+}
+
+/* =======================================================
+   แก้ไขแล้ว: สไตล์สำหรับหน้า Series (Card, Hover Overlay, Tag)
+======================================================== */
+.card {
+  position: relative; /* สำคัญเพื่อให้ overlay อ้างอิงตำแหน่งได้ */
+  background: #1c1f24;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 0 0 calc(50% - 8px); /* ของเก่า */
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+.card__image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card {
+  /* เลเยอร์สีดำที่เด้งขึ้นมาตอน Hover (หน้ารีวิว) */
+}
+.card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 3/4; /* ให้คลุมทับรูปพอดี */
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  pointer-events: none; /* กันบั๊กเวลาเอาเมาส์ชี้ */
+}
+.card__review-short {
+  font-size: 0.85rem;
+  color: #d8dbdf;
+  line-height: 1.5;
+}
+.card {
+  /* เมื่อ Hover ที่ Card ให้เปิด Overlay */
+}
+.card:hover .card__overlay {
+  opacity: 1;
+}
+.card {
+  /* ระยะห่างของตัวหนังสือด้านล่าง ไม่ให้ชิดภาพเกินไป */
+}
+.card__info {
+  padding: 12px;
+}
+.card__name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #d8dbdf;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card__meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.card {
+  /* กล่องที่ยังไม่เปิดเผย (Coming Soon) */
+}
+.card--locked {
+  opacity: 0.7;
+}
+.card--locked .card__placeholder {
+  width: 100%;
+  height: 100%;
+  background: #1a1816;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #5e646b;
+  border: 2px dashed #2a2e35;
+}
+
+/* สไตล์กล่อง Tag (เช่น ★ 8.5 หรือ Sci-Fi) */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.tag--accent {
+  background: #55a872;
+  color: #141311;
+}
+.tag--outline {
+  border: 1px solid #2a2e35;
+  color: #8c929b;
+}
+
+/* ======================================================= */
+.highlight {
+  padding: 32px 0;
+}
+.highlight__banner {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+  border-radius: 6px;
+  padding: 32px 20px;
+}
+.highlight__title {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+.highlight__text {
+  font-size: 0.9rem;
+  color: #8c929b;
+  line-height: 1.7;
+}
+
+.footer {
+  background: #16181c;
+  padding: 48px 0 40px;
+  position: relative;
+  z-index: 1;
+}
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+}
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+.footer__nav a {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #8c929b;
+  transition: color 0.3s ease;
+}
+.footer__nav a:hover {
+  color: #d8dbdf;
+}
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.footer__socials a {
+  font-size: 1.2rem;
+  color: #5e646b;
+  transition: color 0.3s ease, transform 0.3s ease;
+  text-decoration: none;
+}
+.footer__socials a:hover {
+  color: #d8dbdf;
+  transform: translateY(-2px);
+}
+.footer__bottom {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: #5e646b;
+  line-height: 1.6;
+}
+.footer__bottom a {
+  color: #5e646b;
+  transition: color 0.3s ease;
+}
+.footer__bottom a:hover {
+  color: #d8dbdf;
+}
+
+.page-header {
+  margin-top: 0;
+  /* ปรับ padding บน-ล่าง และเพิ่ม margin-bottom เพื่อผลักรูปภาพลงไป */
+  padding: 56px 0 24px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.page-header__title {
+  font-size: 2rem;
+}
+.page-header__sub {
+  color: #8c929b;
+  font-size: 0.9rem;
+  margin-top: 12px; /* ดันคำโปรยให้ห่างจากหัวข้อหลักนิดนึง */
+}
+
+.series-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding-bottom: 48px;
+}
+
+.grid-5 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* แบ่ง 2 คอลัมน์เป็นค่าเริ่มต้น (สำหรับอันเล็ก) */
+  gap: 16px;
+  padding-bottom: 48px;
+  /* บังคับให้ "การ์ดใบแรก" ขยายเต็มความกว้าง (กินพื้นที่ 2 คอลัมน์) */
+}
+.grid-5 .card:first-child {
+  grid-column: span 2;
+}
+
+@media (min-width: 768px) {
+  .header {
+    height: 64px;
+  }
+  .nav {
+    padding: 0 40px;
+  }
+  .nav__logo {
+    font-size: 1.8rem;
+  }
+  .nav__hamburger {
+    display: none;
+  }
+  .nav__links {
+    display: flex;
+    position: static;
+    width: auto;
+    height: 100%;
+    border-left: none;
+    padding: 0;
+    background: none;
+    flex-direction: row;
+    gap: 32px;
+  }
+  .nav__links a {
+    font-size: 0.85rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .hero {
+    height: 90vh;
+    margin-top: 64px;
+  }
+  .hero img {
+    object-position: center center;
+  }
+  .hero__content {
+    bottom: 80px;
+    left: 60px;
+    right: auto;
+    max-width: 550px;
+  }
+  .hero__title {
+    font-size: 2.8rem;
+  }
+  .hero__desc {
+    font-size: 1rem;
+  }
+  .cards-section {
+    padding: 72px 0;
+  }
+  .cards-section__title {
+    font-size: 1.8rem;
+  }
+  .cards-section__btn {
+    width: 42px;
+    height: 42px;
+  }
+  .card-track {
+    gap: 20px;
+  }
+  .card {
+    flex: 0 0 calc(25% - 15px);
+  }
+  .highlight {
+    padding: 48px 0;
+  }
+  .highlight__banner {
+    padding: 48px 56px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  .highlight__title {
+    font-size: 1.6rem;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+  .footer__top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer__nav {
+    gap: 24px;
+  }
+  .page-header {
+    margin-top: 0;
+    padding: 80px 0 32px;
+    margin-bottom: 24px;
+  }
+  .page-header__title {
+    font-size: 2.5rem;
+  }
+  .series-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 72px;
+  }
+  .grid-5 {
+    grid-template-columns: repeat(5, 1fr); /* จอคอมให้เรียง 5 คอลัมน์เท่ากันหมด */
+    gap: 16px;
+    padding-bottom: 64px;
+    /* จอคอม บังคับให้การ์ดใบแรกกลับมามีขนาดเท่าเพื่อน (1 คอลัมน์) */
+  }
+  .grid-5 .card:first-child {
+    grid-column: auto;
+  }
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .gallery__overlay {
+    opacity: 0;
+    transform: translateY(8px);
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+  }
+  .gallery__name {
+    font-size: 1rem;
+  }
+  .gallery__item--large .gallery__name {
+    font-size: 1.3rem;
+  }
+  .gallery__spec {
+    font-size: 0.8rem;
+  }
+  .gallery__desc {
+    display: block;
+    font-size: 0.8rem;
+    color: #8c929b;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+  .container {
+    padding: 0 40px;
+  }
+}/*# sourceMappingURL=main.css.map */
